@@ -1,6 +1,6 @@
 import { AdvancedMarker } from "@vis.gl/react-google-maps";
 import { Icon } from '@iconify/react'
-import locationIcon from '@iconify/icons-mdi/fire-alert'
+import locationIcon from '@iconify/icons-mdi/fire'
 
 const LocationMarker = ({ lat, lng }) => {
     return (

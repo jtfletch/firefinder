@@ -16,7 +16,7 @@ const LoadMap = ({eventData}) => {
     <div className="map">
       <APIProvider apiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
         <Map
-          defaultZoom={10}
+          defaultZoom={6}
           defaultCenter={{ lat: -38.0735, lng: 145.4851 }}
           gestureHandling={"greedy"}
           mapId={"8095e43d45822679"}
