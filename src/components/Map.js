@@ -1,6 +1,4 @@
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
-import { useState } from "react";
-
 import LocationMarker from "./LocationMarker";
 
 const LoadMap = ({eventData}) => {
