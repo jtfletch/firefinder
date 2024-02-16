@@ -17,10 +17,18 @@ const CFAPage = () => {
         const xml = parser.parseFromString(xmlText, 'text/xml');
 
         // Convert XML to JSON
-        const items = Array.from(xml.querySelectorAll('item')).map(item => ({
-          title: item.querySelector('title').textContent,
-          link: item.querySelector('link').textContent
-        }));
+        const items = Array.from(xml.querySelectorAll('item')).map(item => {
+          const description = item.querySelector('description').textContent;
+          const latitudeMatch = description.match(/<strong>Latitude:<\/strong>\s*(-?\d+\.\d+)/);
+          const longitudeMatch = description.match(/<strong>Longitude:<\/strong>\s*(-?\d+\.\d+)/);
+        
+          return {
+            title: item.querySelector('title').textContent,
+            link: item.querySelector('link').textContent,
+            lat: latitudeMatch ? parseFloat(latitudeMatch[1]) : null,
+            lng: longitudeMatch ? parseFloat(longitudeMatch[1]) : null,
+          };
+        });
 
         setFeedData({
           title: xml.querySelector('channel > title').textContent,
@@ -34,6 +42,8 @@ const CFAPage = () => {
     fetchFeed();
   }, []);
 
+  console.log(feedData)
+
   return (
     <div>
       {feedData ? (
@@ -42,7 +52,14 @@ const CFAPage = () => {
           <ul>
             {feedData.items.map((entry, index) => (
               <li key={index}>
-                <a href={entry.link}>{entry.title}</a>
+                <span>
+                  <a href={entry.link}>{entry.title}</a>{' '}
+                  {entry.lat !== null && entry.lng !== null && (
+                    <span style={{ color: 'green' }}>
+                      (Lat: {entry.lat}, Lng: {entry.lng})
+                    </span>
+                  )}
+                </span>
               </li>
             ))}
           </ul>

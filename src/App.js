@@ -5,23 +5,13 @@ import Loader from "./components/Loader";
 import Header from "./components/Header";
 import CFAPage from "./components/CFAPage";
 import "bootstrap/dist/css/bootstrap.min.css";
+import useFetchEventData from "./hooks/fetchEventData";
+import useFetchCFAData from "./hooks/fetchCFAData";
+
 
 function App() {
-  const [eventData, setEventData] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      setLoading(true);
-      const res = await fetch("https://eonet.gsfc.nasa.gov/api/v2.1/events");
-      const { events } = await res.json();
-
-      setEventData(events);
-      setLoading(false);
-    };
-
-    fetchEvents();
-  }, []);
+  const { eventData, loading: eventLoading } = useFetchEventData();
+  const cfaData = useFetchCFAData();
 
   return (
     <div>
@@ -33,7 +23,7 @@ function App() {
           <Route path="/cfa" element={<CFAPage/>} />
           <Route
             path="/"
-            element={!loading ? <LoadMap eventData={eventData} /> : <Loader />}
+            element={!eventLoading ? <LoadMap eventData={eventData} /> : <Loader />}
           ></Route>
         </Routes>
       </div>
