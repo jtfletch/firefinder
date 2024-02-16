@@ -5,6 +5,7 @@ import StructureMarker from "./markers/StructureMarker";
 import BushfireMarker from "./markers/BushfireMarker";
 import FalseMarker from "./markers/FalseMarker";
 import OtherMarker from "./markers/OtherMarker";
+import GrassMarker from "./markers/GrassMarker";
 
 const LoadMap = ({eventData, cfaData}) => {
 
@@ -23,7 +24,7 @@ const LoadMap = ({eventData, cfaData}) => {
         else if (cfa.incidentType === "STRUCTURE") {
           return <StructureMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
         }
-        else if (cfa.incidentType === "FALSE") {
+        else if (cfa.incidentType === "FALSE_ALARM") {
           return <FalseMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
         }
         else if (cfa.incidentType === "BUSHFIRE") {
@@ -31,6 +32,9 @@ const LoadMap = ({eventData, cfaData}) => {
         }
         else if (cfa.incidentType === "OTHER") {
           return <OtherMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
+        }
+        else if (cfa.incidentType === "GRASS") {
+          return <GrassMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
         }
         else {
           return <LocationMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;

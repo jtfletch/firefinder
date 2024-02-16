@@ -51,7 +51,12 @@ body {
 
 .structure-icon {
   font-size: 1rem;
-  color: green;
+  color: darkslategray;
+}
+
+.grass-icon {
+  font-size: 1rem;
+  color: lightgreen;
 }
 
 .other-icon {
