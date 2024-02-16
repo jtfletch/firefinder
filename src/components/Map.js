@@ -22,7 +22,7 @@ const LoadMap = ({eventData, cfaData}) => {
           return <RescueMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
         }
         else if (cfa.incidentType === "STRUCTURE") {
-          return <StructureMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
+          return <StructureMarker key={index} lat={cfa.latitude} lng={cfa.longitude} name={cfa.name} location={cfa.incidentLocation} type={cfa.incidentType} />;
         }
         else if (cfa.incidentType === "FALSE_ALARM") {
           return <FalseMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
