@@ -13,10 +13,33 @@ const useFetchCFAData = () => {
 
         // Process JSON data
         const items = jsonData.results.map(result => ({
-          title: result.name,
-          lat: result.latitude,
-          lng: result.longitude,
-          type: result.incidentType,
+          incidentNo: result.incidentNo,
+          lastUpdateDateTime: result.lastUpdateDateTime,
+          originDateTime: result.originDateTime,
+          incidentType: result.incidentType,
+          incidentLocation: result.incidentLocation,
+          incidentStatus: result.incidentStatus,
+          incidentSize: result.incidentSize,
+          name: result.name,
+          territory: result.territory,
+          resourceCount: result.resourceCount,
+          latitude: result.latitude,
+          longitude: result.longitude,
+          eventCode: result.eventCode,
+          fireDistrict: result.fireDistrict,
+          municipality: result.municipality,
+          category1: result.category1,
+          category2: result.category2,
+          feedType: result.feedType,
+          agency: result.agency,
+          originStatus: result.originStatus,
+          createdDt: result.createdDt,
+          lastUpdatedDt: result.lastUpdatedDt,
+          lastUpdatedDtStr: result.lastUpdatedDtStr,
+          originDateTimeStr: result.originDateTimeStr,
+          catg1CssClass: result.catg1CssClass,
+          incidentSizeFmt: result.incidentSizeFmt,
+          type: result.type,
         }));
 
         setCfaData(items);
