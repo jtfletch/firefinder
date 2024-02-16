@@ -34,6 +34,31 @@ body {
   color: red;
 }
 
+.rescue-icon {
+  font-size: 1rem;
+  color: yellow;
+}
+
+.bushfire-icon {
+  font-size: 1rem;
+  color: orange;
+}
+
+.false-icon {
+  font-size: 1rem;
+  color: purple;
+}
+
+.structure-icon {
+  font-size: 1rem;
+  color: green;
+}
+
+.other-icon {
+  font-size: 1rem;
+  color: cyan;
+}
+
 .loader {
   display: flex;
   flex-direction: column;

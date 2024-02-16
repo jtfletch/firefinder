@@ -21,11 +21,14 @@ const useFetchCFAData = () => {
           const description = item.querySelector('description').textContent;
           const latitudeMatch = description.match(/<strong>Latitude:<\/strong>\s*(-?\d+\.\d+)/);
           const longitudeMatch = description.match(/<strong>Longitude:<\/strong>\s*(-?\d+\.\d+)/);
+          const typeMatch = description.match(/<strong>Type:<\/strong>\s*([A-Z]+)/);
+          console.log(typeMatch[1])
         
           return {
             title: item.querySelector('title').textContent,
             lat: latitudeMatch ? parseFloat(latitudeMatch[1]) : null,
             lng: longitudeMatch ? parseFloat(longitudeMatch[1]) : null,
+            type: typeMatch ? typeMatch[1] : null,
           };
         });
 

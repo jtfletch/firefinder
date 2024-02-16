@@ -23,7 +23,7 @@ function App() {
           <Route path="/cfa" element={<CFAPage/>} />
           <Route
             path="/"
-            element={!eventLoading ? <LoadMap eventData={eventData} /> : <Loader />}
+            element={!eventLoading ? <LoadMap eventData={eventData} cfaData={cfaData} /> : <Loader />}
           ></Route>
         </Routes>
       </div>
