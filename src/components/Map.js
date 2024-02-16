@@ -16,24 +16,24 @@ const LoadMap = ({eventData, cfaData}) => {
     })
 
     const cfaMarkers = cfaData.map((cfa, index) => {
-      if (cfa.lat !== null && cfa.lng !== null) {
-        if (cfa.type === "RESCUE") {
-          return <RescueMarker key={index} lat={cfa.lat} lng={cfa.lng} />;
+      if (cfa.latitude !== null && cfa.longitude !== null) {
+        if (cfa.incidentType === "RESCUE") {
+          return <RescueMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
         }
-        else if (cfa.type === "STRUCTURE") {
-          return <StructureMarker key={index} lat={cfa.lat} lng={cfa.lng} />;
+        else if (cfa.incidentType === "STRUCTURE") {
+          return <StructureMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
         }
-        else if (cfa.type === "FALSE") {
-          return <FalseMarker key={index} lat={cfa.lat} lng={cfa.lng} />;
+        else if (cfa.incidentType === "FALSE") {
+          return <FalseMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
         }
-        else if (cfa.type === "BUSHFIRE") {
-          return <BushfireMarker key={index} lat={cfa.lat} lng={cfa.lng} />;
+        else if (cfa.incidentType === "BUSHFIRE") {
+          return <BushfireMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
         }
-        else if (cfa.type === "OTHER") {
-          return <OtherMarker key={index} lat={cfa.lat} lng={cfa.lng} />;
+        else if (cfa.incidentType === "OTHER") {
+          return <OtherMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
         }
         else {
-          return <LocationMarker key={index} lat={cfa.lat} lng={cfa.lng} />;
+          return <LocationMarker key={index} lat={cfa.latitude} lng={cfa.longitude} />;
         }
       }
       return null;

@@ -6,10 +6,12 @@ const useFetchCFAData = () => {
   useEffect(() => {
     const fetchCFAData = async () => {
       try {
+        const CORS_PROXY = 'https://corsproxy.io/?';
         const JSON_FEED_URL = 'https://data.emergency.vic.gov.au/Show?pageId=getIncidentJSON';
 
-        const response = await fetch(JSON_FEED_URL);
+        const response = await fetch(CORS_PROXY + JSON_FEED_URL);
         const jsonData = await response.json();
+        console.log('Response data:', jsonData);
 
         // Process JSON data
         const items = jsonData.results.map(result => ({
@@ -23,8 +25,8 @@ const useFetchCFAData = () => {
           name: result.name,
           territory: result.territory,
           resourceCount: result.resourceCount,
-          latitude: result.latitude,
-          longitude: result.longitude,
+          latitude: parseFloat(result.latitude),
+          longitude: parseFloat(result.longitude),
           eventCode: result.eventCode,
           fireDistrict: result.fireDistrict,
           municipality: result.municipality,
@@ -43,6 +45,7 @@ const useFetchCFAData = () => {
         }));
 
         setCfaData(items);
+        console.log('Items:', items);
       } catch (error) {
         console.error('Error fetching CFA data:', error);
       }
