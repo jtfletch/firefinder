@@ -6,31 +6,18 @@ const useFetchCFAData = () => {
   useEffect(() => {
     const fetchCFAData = async () => {
       try {
-        const CORS_PROXY = 'https://corsproxy.io/?';
-        const RSS_FEED_URL = 'https://data.emergency.vic.gov.au/Show?pageId=getIncidentRSS';
+        const JSON_FEED_URL = 'https://data.emergency.vic.gov.au/Show?pageId=getIncidentJSON';
 
-        const response = await fetch(CORS_PROXY + RSS_FEED_URL);
-        const xmlText = await response.text();
+        const response = await fetch(JSON_FEED_URL);
+        const jsonData = await response.json();
 
-        // Parse the XML text
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(xmlText, 'text/xml');
-
-        // Convert XML to JSON
-        const items = Array.from(xml.querySelectorAll('item')).map(item => {
-          const description = item.querySelector('description').textContent;
-          const latitudeMatch = description.match(/<strong>Latitude:<\/strong>\s*(-?\d+\.\d+)/);
-          const longitudeMatch = description.match(/<strong>Longitude:<\/strong>\s*(-?\d+\.\d+)/);
-          const typeMatch = description.match(/<strong>Type:<\/strong>\s*([A-Z]+)/);
-          console.log(typeMatch[1])
-        
-          return {
-            title: item.querySelector('title').textContent,
-            lat: latitudeMatch ? parseFloat(latitudeMatch[1]) : null,
-            lng: longitudeMatch ? parseFloat(longitudeMatch[1]) : null,
-            type: typeMatch ? typeMatch[1] : null,
-          };
-        });
+        // Process JSON data
+        const items = jsonData.results.map(result => ({
+          title: result.name,
+          lat: result.latitude,
+          lng: result.longitude,
+          type: result.incidentType,
+        }));
 
         setCfaData(items);
       } catch (error) {
