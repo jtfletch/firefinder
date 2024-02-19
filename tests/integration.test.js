@@ -2,7 +2,7 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import App from './App';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 jest.mock('./hooks/fetchEventData');
 jest.mock('./hooks/fetchCFAData');
@@ -18,9 +18,9 @@ describe('App Component', () => {
     require('./hooks/fetchCFAData').useFetchCFAData.mockReturnValueOnce(cfaData);
     
     const { getByTestId } = render(
-      <Router>
+      <BrowserRouter>
         <App />
-      </Router>
+      </BrowserRouter>
     );
 
     // Loader should not be present
